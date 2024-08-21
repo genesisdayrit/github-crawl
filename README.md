@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-The GitHub Crawl Project is a Python-based solution designed to fetch and store data on the most popular GitHub repositories created within specific timeframes (last 30 days, last 180 days). The data is fetched from the GitHub API and written to a Google Sheet for further analysis and record-keeping.
+Github Crawl includes python scripts to fetch and store data on the most popular GitHub repositories created within specific timeframes. The data is fetched from the GitHub API and written to a Google Sheet for further surveying of the latest projects out there.
 
 ### Project Structure
 
