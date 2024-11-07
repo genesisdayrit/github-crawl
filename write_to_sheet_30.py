@@ -47,12 +47,12 @@ all_repositories = []
 page = 1
 while True:
     response = requests.get(f"{url_template}{page}", headers=headers)
-    
+
     if response.status_code == 200:
         repositories = response.json().get('items', [])
         if not repositories:
             break  # No more repositories to fetch
-        
+
         all_repositories.extend(repositories)
         if len(all_repositories) >= 1000:
             break  # Stop if we reach the GitHub API limit of 1000 results
@@ -61,7 +61,7 @@ while True:
         raise ValueError(f"Failed to fetch repositories: {response.status_code}")
 
 # Prepare data to be written to the sheet
-repo_data = [["Name", "Full Name", "Owner", "Owner's Profile", "Description", "URL", "Stars", "Forks", "Primary Language", 
+repo_data = [["Name", "Full Name", "Owner", "Owner's Profile", "Description", "URL", "Stars", "Forks", "Primary Language",
               "Creation Date", "License", "Watchers", "Default Branch", "Homepage", "Size", "Is Fork", "Topics", "Visibility"]]
 
 for repo in all_repositories:
@@ -102,5 +102,6 @@ new_sheet = spreadsheet.add_worksheet(title=tab_name, rows=len(repo_data), cols=
 # Write all the data at once
 new_sheet.update('A1', repo_data)
 
+# Print the link to the Google Sheet
 print(f"Output successfully written to new sheet '{tab_name}' in the spreadsheet.")
-
+print(f"Google Sheet URL: {spreadsheet.url}")
